@@ -3,6 +3,7 @@ const Note = require('../models/noteModel');
 // View notes
 exports.allNotes = async (req, res) => {
   let user = req.user._id;
+  // console.log(user);
   try {
     const notes = await Note.find({ user });
     // console.log(data);
@@ -15,9 +16,7 @@ exports.allNotes = async (req, res) => {
     res.status(200).json({
       message: 'All notes presented in db',
       status: 'success',
-      data: {
-        data: notes,
-      },
+      data: notes,
     });
   } catch (error) {
     console.log(error);
@@ -45,7 +44,7 @@ exports.createNote = async (req, res) => {
       description,
       user: _id,
     });
-    console.log(data);
+    // console.log(data);
     if (!data) {
       return res
         .status(401)
@@ -68,8 +67,9 @@ exports.createNote = async (req, res) => {
 // Update note
 exports.updateNote = async (req, res) => {
   let noteid = req.params.id;
+  // console.log(noteid);
   const { title, description } = req.body;
-  console.log(title, description);
+  // console.log(title, description);
   try {
     if (!noteid) {
       return res
@@ -105,7 +105,7 @@ exports.updateNote = async (req, res) => {
 // Delete note
 exports.deleteNote = async (req, res) => {
   let noteid = req.params.id;
-
+  // console.log(noteid, 'noteid 107');
   try {
     if (!noteid) {
       return res

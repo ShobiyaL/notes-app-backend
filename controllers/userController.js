@@ -29,7 +29,18 @@ exports.signup = async (req, res) => {
         status: 'error',
       });
     }
+    const payload = {
+      name: user.name,
+      email: user.email,
+      id: user._id,
+    };
+    const token = generateToken(payload);
+    // console.log(token);
     res.status(200).json({
+      data: {
+        ...payload,
+        token,
+      },
       message: 'User created successfully',
       status: 'success',
     });
@@ -72,7 +83,10 @@ exports.login = async (req, res) => {
     };
     const token = generateToken(payload);
     res.status(200).json({
-      token: token,
+      data: {
+        ...payload,
+        token,
+      },
       message: 'LoggedIn successfully',
       status: 'success',
     });
