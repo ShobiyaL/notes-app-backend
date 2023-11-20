@@ -92,6 +92,7 @@ exports.updateNote = async (req, res) => {
     res.json({
       message: 'Successfully updated note Info',
       status: 'success',
+      data: note,
     });
   } catch (error) {
     console.log(error);
@@ -105,7 +106,7 @@ exports.updateNote = async (req, res) => {
 // Delete note
 exports.deleteNote = async (req, res) => {
   let noteid = req.params.id;
-  // console.log(noteid, 'noteid 107');
+  console.log(noteid, 'noteid 107');
   try {
     if (!noteid) {
       return res
@@ -114,10 +115,12 @@ exports.deleteNote = async (req, res) => {
     }
 
     const note = await Note.findByIdAndDelete(noteid);
+    console.log(note);
     if (note) {
       return res.status(200).json({
         message: 'Successfully deleted your note ',
         status: 'success',
+        data: note,
       });
     } else {
       return res.status(400).json({
