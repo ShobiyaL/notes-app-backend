@@ -13,6 +13,12 @@ const noteSchema = new mongoose.Schema(
       required: true,
       ref: 'User',
     },
+    color: {
+      type: String,
+    },
+    font: {
+      type: String,
+    },
   },
   {
     timestamps: true,

@@ -30,7 +30,7 @@ exports.allNotes = async (req, res) => {
 // Create Note
 exports.createNote = async (req, res) => {
   //   console.log(req.body, req.user);
-  const { title, description } = req.body;
+  const { title, description, color, font } = req.body;
   const { _id } = req.user;
   //   console.log(_id, title, description);
   try {
@@ -42,6 +42,8 @@ exports.createNote = async (req, res) => {
     const data = await Note.create({
       title,
       description,
+      color,
+      font,
       user: _id,
     });
     // console.log(data);
